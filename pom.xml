@@ -19,6 +19,7 @@
 					<suiteXmlFiles>
 						<suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
 					</suiteXmlFiles>
+					<forkCount>0</forkCount>
 				</configuration>
 			</plugin>
 		</plugins>
