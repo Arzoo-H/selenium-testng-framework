@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 
 import com.brushupproject.base.BaseTest;
 import com.brushupproject.pages.LoginPage;
+import com.brushupproject.utils.AssertionUtils;
 
 public class LoginTest extends BaseTest {
 
@@ -12,6 +13,8 @@ public class LoginTest extends BaseTest {
 
         LoginPage login = new LoginPage(driver);
 
-        login.login("Admin", "admin123");
+        AssertionUtils.assertTrue(login.loginToPortal("Admin", "admin123"), 
+        							"Log into the portal");
+        
     }
 }

@@ -23,12 +23,17 @@ public class LoginPage extends BasePage {
 	// FUNCTIONS
 	// ==========================================
     
-    public void login(String username, String password) {
+    public boolean loginToPortal(String username, String password) {
 
-        actions.enterText(txtUsername, username);
+		if (actions.waitForClickable(txtUsername) != null) {
+			actions.enterText(txtUsername, username);
 
-        actions.enterText(txtPassword, password);
+			actions.enterText(txtPassword, password);
 
-        actions.click(btnLogin);
-    }
+			actions.click(btnLogin);
+
+			return true;
+		}
+		return false;
+	}
 }

@@ -3,12 +3,15 @@ package com.brushupproject.utils;
 import java.time.Duration;
 import java.util.List;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.brushupproject.base.DriverFactory;
 
 public class ElementActions {
 
@@ -38,6 +41,110 @@ public class ElementActions {
 	            "return window.location.href;");
 	}
 	
+	// ==========================================
+	// WAITS
+	// ==========================================
+	
+	public WebElement waitForVisibility(By locator) {
+
+	    WebDriverWait wait =
+	            new WebDriverWait(
+	            		DriverFactory.getDriver(),
+	                    Duration.ofSeconds(10));
+
+	    return wait.until(
+	            ExpectedConditions.visibilityOfElementLocated(locator));
+	}
+	
+	public WebElement waitForVisibility(WebElement element) {
+
+	    WebDriverWait wait =
+	            new WebDriverWait(
+	                    DriverFactory.getDriver(),
+	                    Duration.ofSeconds(10));
+
+	    return wait.until(
+	            ExpectedConditions.visibilityOf(element));
+	}
+	
+	public List<WebElement> waitForAllElementsVisible(
+	        List<WebElement> elements) {
+
+	    WebDriverWait wait =
+	            new WebDriverWait(
+	                    DriverFactory.getDriver(),
+	                    Duration.ofSeconds(10));
+
+	    return wait.until(
+	            ExpectedConditions.visibilityOfAllElements(
+	                    elements));
+	}
+	
+	public WebElement waitForClickable(By locator) {
+
+	    WebDriverWait wait =
+	            new WebDriverWait(
+	                    DriverFactory.getDriver(),
+	                    Duration.ofSeconds(10));
+
+	    return wait.until(
+	            ExpectedConditions.elementToBeClickable(locator));
+	}
+	
+	public WebElement waitForClickable(WebElement element) {
+
+	    WebDriverWait wait =
+	            new WebDriverWait(
+	                    DriverFactory.getDriver(),
+	                    Duration.ofSeconds(10));
+
+	    return wait.until(
+	            ExpectedConditions.elementToBeClickable(element));
+	}
+	
+	public boolean waitForInvisibility(By locator) {
+
+	    WebDriverWait wait =
+	            new WebDriverWait(
+	                    DriverFactory.getDriver(),
+	                    Duration.ofSeconds(10));
+
+	    return wait.until(
+	            ExpectedConditions.invisibilityOfElementLocated(locator));
+	}
+	
+	public boolean waitForInvisibility(WebElement element) {
+
+	    WebDriverWait wait =
+	            new WebDriverWait(
+	                    DriverFactory.getDriver(),
+	                    Duration.ofSeconds(10));
+
+	    return wait.until(
+	            ExpectedConditions.invisibilityOf(element));
+	}
+	
+	public Alert waitForAlert() {
+
+	    WebDriverWait wait =
+	            new WebDriverWait(
+	                    DriverFactory.getDriver(),
+	                    Duration.ofSeconds(10));
+
+	    return wait.until(
+	            ExpectedConditions.alertIsPresent());
+	}
+	
+	public boolean waitForStaleness(WebElement element) {
+
+	    WebDriverWait wait =
+	            new WebDriverWait(
+	                    DriverFactory.getDriver(),
+	                    Duration.ofSeconds(10));
+
+	    return wait.until(
+	            ExpectedConditions.stalenessOf(element));
+	}
 	
 	
 	// ==========================================

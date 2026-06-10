@@ -6,6 +6,18 @@ import java.util.Date;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
+/**
+ * 
+ * Responsible for:
+
+	Create report
+	Configure report
+	Attach reporter
+	Flush report
+	
+ * @author Arzoo Hingorani
+ * 
+ */
 public class ExtentManager {
 
     private static ExtentReports extent;
