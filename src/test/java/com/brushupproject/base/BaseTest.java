@@ -1,13 +1,12 @@
 package com.brushupproject.base;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 
+import com.brushupproject.config.ConfigManager;
 import com.brushupproject.listeners.*;
 
 
@@ -25,31 +24,9 @@ public class BaseTest {
     @BeforeSuite
     public void oneTimeSetup() {
     	
-		properties = new Properties();
-
-		/*
-		 * When Maven builds the project, everything under: 'src/test/resources' is copied to: 'target/test-classes'
-		 * which is automatically added to the classpath during test execution.
-		 * 
-		 * If your file is inside a folder 'src/test/resources/config/config.properties' 
-		 * Then you must use: getResourceAsStream("config/config.properties");
-		 */
-		try (InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")) {
-
-			if (input == null) {
-				throw new RuntimeException("config.properties not found in classpath");
-			}
-			
-			properties.load(input);
-
-		} catch (IOException e) {
-
-			throw new RuntimeException("Failed to load config.properties", e);
-		}
-
-		browser = System.getProperty("browser", properties.getProperty("browser"));
-		env = System.getProperty("env", properties.getProperty("environment"));
-		url = System.getProperty("env", properties.getProperty("url"));
+		browser = System.getProperty("browser", ConfigManager.getInstance().getBrowser());
+		env = System.getProperty("env", ConfigManager.getInstance().getEnv());
+		url = System.getProperty("env", ConfigManager.getInstance().getBaseUrl());
 		
     }
 
