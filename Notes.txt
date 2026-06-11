@@ -1,0 +1,4 @@
+1. Why not use Page Factory model?
+
+I've used PageFactory in the past, but I prefer Page Objects based on By locators and explicit waits. 
+It provides better synchronization, avoids stale element issues, and aligns with modern Selenium framework design.
