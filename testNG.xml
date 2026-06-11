@@ -8,6 +8,9 @@
 			class-name="com.brushupproject.listeners.RetryListener" />
 	</listeners>
 
+	<parameter name="browser" value="chrome" />
+	<parameter name="env" value="qa" />
+
 	<test name="Regression">
 		<classes>
 			<class name="com.brushupproject.tests.LoginTest" />
