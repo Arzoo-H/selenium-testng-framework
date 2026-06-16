@@ -1,10 +1,11 @@
-package com.brushupproject.pages;
+package com.selenium.testng.pages;
+
+import static com.selenium.testng.locators.LoginPageLocators.*;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import com.brushupproject.base.BasePage;
-import static com.brushupproject.locators.LoginPageLocators.*;
+import com.selenium.testng.base.BasePage;
 
 public class LoginPage extends BasePage {
 

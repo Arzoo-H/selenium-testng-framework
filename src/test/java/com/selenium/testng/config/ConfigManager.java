@@ -1,4 +1,4 @@
-package com.brushupproject.config;
+package com.selenium.testng.config;
 
 import java.io.InputStream;
 import java.util.Properties;

@@ -1,4 +1,4 @@
-package com.brushupproject.locators;
+package com.selenium.testng.locators;
 
 public class LoginPageLocators {
 

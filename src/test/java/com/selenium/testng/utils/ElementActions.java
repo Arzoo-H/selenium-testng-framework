@@ -1,4 +1,4 @@
-package com.brushupproject.utils;
+package com.selenium.testng.utils;
 
 import java.time.Duration;
 import java.util.List;
@@ -11,7 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.brushupproject.base.DriverFactory;
+import com.selenium.testng.base.DriverFactory;
 
 public class ElementActions {
 

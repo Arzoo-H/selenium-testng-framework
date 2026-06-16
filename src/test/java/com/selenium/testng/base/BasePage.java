@@ -1,8 +1,8 @@
-package com.brushupproject.base;
+package com.selenium.testng.base;
 
 import org.openqa.selenium.WebDriver;
 
-import com.brushupproject.utils.ElementActions;
+import com.selenium.testng.utils.ElementActions;
 
 public class BasePage {
 

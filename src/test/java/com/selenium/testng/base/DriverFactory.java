@@ -1,4 +1,4 @@
-package com.brushupproject.base;
+package com.selenium.testng.base;
 
 import java.time.Duration;
 

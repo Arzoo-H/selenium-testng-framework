@@ -1,14 +1,14 @@
-package com.brushupproject.listeners;
+package com.selenium.testng.listeners;
 
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import com.aventstack.extentreports.*;
-import com.brushupproject.base.DriverFactory;
-import com.brushupproject.base.TestContext;
-import com.brushupproject.utils.ExtentManager;
-import com.brushupproject.utils.ScreenshotUtil;
+import com.selenium.testng.base.DriverFactory;
+import com.selenium.testng.base.TestContext;
+import com.selenium.testng.utils.ExtentManager;
+import com.selenium.testng.utils.ScreenshotUtil;
 
 public class TestListener implements ITestListener {
 

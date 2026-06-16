@@ -1,10 +1,10 @@
-package com.brushupproject.tests;
+package com.selenium.testng.tests;
 
 import org.testng.annotations.Test;
 
-import com.brushupproject.base.BaseTest;
-import com.brushupproject.pages.LoginPage;
-import com.brushupproject.utils.AssertionUtils;
+import com.selenium.testng.base.BaseTest;
+import com.selenium.testng.pages.LoginPage;
+import com.selenium.testng.utils.AssertionUtils;
 
 public class LoginTest extends BaseTest {
 

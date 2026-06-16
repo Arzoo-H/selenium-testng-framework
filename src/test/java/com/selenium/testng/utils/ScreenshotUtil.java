@@ -1,4 +1,4 @@
-package com.brushupproject.utils;
+package com.selenium.testng.utils;
 
 import java.io.File;
 import java.io.IOException;
