@@ -3,9 +3,9 @@
 
 	<listeners>
 		<listener
-			class-name="com.brushupproject.listeners.TestListener" />
+			class-name="com.selenium.testng.listeners.TestListener" />
 		<listener
-			class-name="com.brushupproject.listeners.RetryListener" />
+			class-name="com.selenium.testng.listeners.RetryListener" />
 	</listeners>
 
 	<parameter name="browser" value="chrome" />
@@ -15,7 +15,7 @@
 		<parameter name="browser" value="chrome" />
 		<parameter name="env" value="qa" />
 		<classes>
-			<class name="com.brushupproject.tests.LoginTest" />
+			<class name="com.selenium.testng.tests.LoginTest" />
 		</classes>
 	</test>
 
@@ -23,7 +23,7 @@
 		<parameter name="browser" value="firefox" />
 		<parameter name="env" value="qa" />
 		<classes>
-			<class name="com.brushupproject.tests.LoginTest" />
+			<class name="com.selenium.testng.tests.LoginTest" />
 		</classes>
 	</test>
 

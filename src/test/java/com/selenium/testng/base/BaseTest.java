@@ -1,10 +1,10 @@
-package com.brushupproject.base;
+package com.selenium.testng.base;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 
-import com.brushupproject.config.ConfigManager;
-import com.brushupproject.listeners.*;
+import com.selenium.testng.config.ConfigManager;
+import com.selenium.testng.listeners.*;
 
 
 @Listeners({
