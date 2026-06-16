@@ -52,8 +52,8 @@ public class ConfigManager {
 
 	// helper methods (clean API)
 	// passing 'chrome' for browser is to imply by default we choose chrome
-	public String getBaseUrl() {
-		return properties.getProperty("url");
+	public String getUrl(String env) {
+		return properties.getProperty(env + ".url");
 	}
 
 }

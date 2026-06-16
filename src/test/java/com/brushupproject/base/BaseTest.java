@@ -1,7 +1,5 @@
 package com.brushupproject.base;
 
-import java.util.Properties;
-
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 
@@ -15,26 +13,28 @@ import com.brushupproject.listeners.*;
 })
 public class BaseTest {
 
-	protected static WebDriver driver;
-    protected static Properties properties;
-    protected static String browserName, environment, url;
+	protected WebDriver driver;
+    protected String url;
 
-    @Parameters({"browser", "env"})
+    
     @BeforeSuite
-    public void oneTimeSetup(@Optional("firefox") String browser, @Optional("prod") String env) {
+    public void oneTimeSetup() {
     	
-    	browserName = browser;
-    	environment = env;
-		url = System.getProperty("env", ConfigManager.getInstance().getBaseUrl());
-		
-	    DriverFactory.initDriver(browser);
-	    driver = DriverFactory.getDriver();
     }
 
+    @Parameters({"browser", "env"})
     @BeforeMethod
-    public void setup() {
+    public void setup(@Optional("firefox") String browser, @Optional("prod") String env) {
 
+    	// Set details to a POJO class that has threadlocal to maintain details for parallel execution
+    	TestContext.setContext(new TestContext(browser, env));
+    	
+    	DriverFactory.initDriver(browser);
+	    driver = DriverFactory.getDriver();
+	    
+	    url = ConfigManager.getInstance().getUrl(env);
     	driver.get(url);
+    	
     }
 
     @AfterMethod(alwaysRun = true)
@@ -47,15 +47,7 @@ public class BaseTest {
 
             DriverFactory.unload();
         }
-    }
-    
-    // Other methods
-    
-    public static String getBrowser() {
-        return browserName;
-    }
-
-    public static String getEnv() {
-        return environment;
+        
+        TestContext.unload(); // Otherwise the ThreadLocal value remains attached to the thread until the JVM decides to clean it up.
     }
 }
