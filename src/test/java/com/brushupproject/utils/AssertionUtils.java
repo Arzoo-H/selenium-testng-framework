@@ -10,11 +10,11 @@ public class AssertionUtils {
 
 			Assert.assertEquals(actual, expected);
 
-			ExtentTestManager.getTest().pass(stepMessage);
+			ExtentManager.getTest().pass(stepMessage);
 
 		} catch (AssertionError e) {
 
-			ExtentTestManager.getTest().fail(stepMessage);
+			ExtentManager.getTest().fail(stepMessage);
 
 			throw e;
 		}
@@ -26,11 +26,11 @@ public class AssertionUtils {
 
 			Assert.assertTrue(condition);
 
-			ExtentTestManager.getTest().pass(stepMessage);
+			ExtentManager.getTest().pass(stepMessage);
 
 		} catch (AssertionError e) {
 
-			ExtentTestManager.getTest().fail(stepMessage);
+			ExtentManager.getTest().fail(stepMessage);
 
 			throw e;
 		}
@@ -42,11 +42,11 @@ public class AssertionUtils {
 
 			Assert.assertFalse(condition);
 
-			ExtentTestManager.getTest().pass(stepMessage);
+			ExtentManager.getTest().pass(stepMessage);
 
 		} catch (AssertionError e) {
 
-			ExtentTestManager.getTest().fail(stepMessage);
+			ExtentManager.getTest().fail(stepMessage);
 
 			throw e;
 		}
@@ -54,7 +54,7 @@ public class AssertionUtils {
 
 	public static void fail(String stepMessage) {
 
-		ExtentTestManager.getTest().fail(stepMessage);
+		ExtentManager.getTest().fail(stepMessage);
 
 		Assert.fail(stepMessage);
 	}
