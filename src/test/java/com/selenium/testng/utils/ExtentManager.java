@@ -1,11 +1,9 @@
 package com.selenium.testng.utils;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.selenium.testng.config.ExecutionContext;
 
 /**
  * 
@@ -28,12 +26,7 @@ public class ExtentManager {
 
         if (extent == null) {
 
-            String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-
-            String reportPath = System.getProperty("user.dir")
-			                    + "/reports/ExtentReport_"
-			                    + timestamp
-			                    + ".html";
+            String reportPath = ExecutionContext.getReportPath();
 
             ExtentSparkReporter spark = new ExtentSparkReporter(reportPath);
 

@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 
 import com.selenium.testng.config.ConfigManager;
+import com.selenium.testng.config.LoggerConfig;
 import com.selenium.testng.listeners.*;
 
 
@@ -16,10 +17,13 @@ public class BaseTest {
 	protected WebDriver driver;
     protected String url;
 
-    
     @BeforeSuite
     public void oneTimeSetup() {
     	
+    	// Programmatically setting log file details instead setting in Logback.xml
+    	// because Logback reads logback.xml before our code gets a chance to set logFileName with 
+    	// same runID as ExtentReport and Screenshot
+    	LoggerConfig.configure();
     }
 
     @Parameters({"browser", "env"})
