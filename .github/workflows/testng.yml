@@ -21,4 +21,4 @@ jobs:
           java-version: 17
 
       - name: Run Maven tests
-        run: mvn clean test -DsuiteXmlFile=testng.xml
+        run: mvn clean test -DsuiteXmlFile=testNG.xml
