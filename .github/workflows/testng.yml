@@ -22,3 +22,10 @@ jobs:
 
       - name: Run Maven tests
         run: mvn clean test -DsuiteXmlFile=testNG.xml
+        
+      - name: Upload Extent Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: extent-report
+          path: reports/
