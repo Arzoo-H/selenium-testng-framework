@@ -8,12 +8,12 @@
 			class-name="com.selenium.testng.listeners.RetryListener" />
 	</listeners>
 
-	<parameter name="browser" value="chrome" />
 	<parameter name="env" value="qa" />
-
+	<parameter name="headless" value="true" />
+	
 	<test name="Chrome-QA">
 		<parameter name="browser" value="chrome" />
-		<parameter name="env" value="qa" />
+
 		<classes>
 			<class name="com.selenium.testng.tests.LoginTest" />
 		</classes>
@@ -21,7 +21,6 @@
 
 	<test name="Firefox-QA">
 		<parameter name="browser" value="firefox" />
-		<parameter name="env" value="qa" />
 		<classes>
 			<class name="com.selenium.testng.tests.LoginTest" />
 		</classes>

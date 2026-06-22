@@ -22,14 +22,15 @@ package com.selenium.testng.base;
 public class TestContext {
 
 	private String browser;
-
 	private String env;
+	private Boolean headless;
 	private static ThreadLocal<TestContext> context = new ThreadLocal<>();
 
-	public TestContext(String browser, String env) {
+	public TestContext(String browser, String env, Boolean headless) {
 
 		this.browser = browser;
 		this.env = env;
+		this.headless = headless;
 	}
 
 	public String getBrowser() {
@@ -38,6 +39,10 @@ public class TestContext {
 
 	public String getEnv() {
 		return env;
+	}
+	
+	public Boolean isHeadless() {
+		return headless;
 	}
 
 	/*
