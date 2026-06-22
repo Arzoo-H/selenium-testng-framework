@@ -22,14 +22,15 @@ public class BaseTest {
     	
     }
 
-    @Parameters({"browser", "env"})
+    @Parameters({"browser", "env", "headless"})
     @BeforeMethod
-    public void setup(@Optional("firefox") String browser, @Optional("prod") String env) {
+    public void setup(@Optional("firefox") String browser, @Optional("prod") String env, @Optional("false") boolean headless) {
 
     	// Set details to a POJO class that has threadlocal to maintain details for parallel execution
-    	TestContext.setContext(new TestContext(browser, env));
+    	TestContext.setContext(new TestContext(browser, env, headless));
     	
-    	DriverFactory.initDriver(browser);
+    	// Spin a driver
+    	DriverFactory.initDriver(browser, headless);
 	    driver = DriverFactory.getDriver();
 	    
 	    url = ConfigManager.getInstance().getUrl(env);

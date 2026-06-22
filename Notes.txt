@@ -2,3 +2,68 @@
 
 I've used PageFactory in the past, but I prefer Page Objects based on By locators and explicit waits. 
 It provides better synchronization, avoids stale element issues, and aligns with modern Selenium framework design.
+
+2. Which branch does GitHub execute?
+
+Depends on your YAML.
+==============================================
+Example: 
+
+YAML below- 
+on:
+  push:
+    branches: [ main ]
+    
+    
+    
+    
+means: 	Push to main
+			↓
+		Workflow runs
+		
+but:	Push to feature branch
+				↓
+		Nothing happens
+==============================================
+		
+Now, If you configure: YAML below-
+on:
+  push:
+    branches:
+      - main
+      - develop
+      
+      
+then,
+		Push to main
+			↓
+			Run
+			
+		Push to develop
+			↓
+			Run
+==============================================
+
+Also, if you use:YAML below-
+
+on:
+  pull_request:
+    branches: [ main ]
+    
+    
+    
+then,
+
+		feature branch
+			↓
+		Create PR into main
+			↓
+		Workflow runs
+==============================================
+		
+		
+		
+		
+		
+		
+		
