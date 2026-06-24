@@ -4,10 +4,14 @@ import static com.selenium.testng.locators.LoginPageLocators.*;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
 
 import com.selenium.testng.base.BasePage;
+import com.selenium.testng.utils.LoggerUtil;
 
 public class LoginPage extends BasePage {
+	
+	private static final Logger log = LoggerUtil.getLogger(LoginPage.class);
 
     private By txtUsername = By.name(USERNAME);
 
@@ -32,9 +36,11 @@ public class LoginPage extends BasePage {
 			actions.enterText(txtPassword, password);
 
 			actions.click(btnLogin);
-
+			log.info("Clicked Login button");
 			return true;
 		}
+		
+		log.error("Could not click on Login button");
 		return false;
 	}
 }
