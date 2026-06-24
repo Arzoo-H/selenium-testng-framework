@@ -50,10 +50,24 @@ public class ConfigManager {
 		return instance;
 	}
 
-	// helper methods (clean API)
-	// passing 'chrome' for browser is to imply by default we choose chrome
+	/**
+	 * passing env is to parse which value to pick for url
+	 * @param env - Can be qa, prod
+	 * @return url
+	 * @author Arzoo Hingorani
+	 */
 	public String getUrl(String env) {
 		return properties.getProperty(env + ".url");
+	}
+	
+	/**
+	 * passing env is to parse which value to pick for url
+	 * @param env - Can be qa, prod
+	 * @return url
+	 * @author Arzoo Hingorani
+	 */
+	public String getApiUrl(String env) {
+	    return properties.getProperty(env + ".api.url");
 	}
 
 }
