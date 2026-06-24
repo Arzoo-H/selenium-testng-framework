@@ -44,7 +44,6 @@ public class BaseTest {
         if (driver != null) {
 
         	driver.quit();
-            System.out.println("Closing browser");
 
             DriverFactory.unload();
         }

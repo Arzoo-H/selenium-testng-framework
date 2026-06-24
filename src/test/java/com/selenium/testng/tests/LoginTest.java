@@ -8,7 +8,7 @@ import com.selenium.testng.utils.AssertionUtils;
 
 public class LoginTest extends BaseTest {
 
-    @Test
+    @Test(groups = {"ui-smoke"})
     public void verifyLogin() {
 
         LoginPage login = new LoginPage(driver);
