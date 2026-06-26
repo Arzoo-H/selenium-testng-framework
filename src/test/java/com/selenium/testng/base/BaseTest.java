@@ -1,11 +1,15 @@
 package com.selenium.testng.base;
 
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
 import org.testng.annotations.*;
 
 import com.selenium.testng.config.ConfigManager;
 import com.selenium.testng.config.LoggerConfig;
+import com.selenium.testng.context.TestContext;
 import com.selenium.testng.listeners.*;
+import com.selenium.testng.utils.LoggerUtil;
+import com.selenium.testng.web.driverfactory.DriverFactory;
 
 
 @Listeners({
@@ -14,6 +18,7 @@ import com.selenium.testng.listeners.*;
 })
 public class BaseTest {
 
+	private static final Logger log = LoggerUtil.getLogger(BaseTest.class);
 	protected WebDriver driver;
     protected String url;
 
@@ -37,6 +42,7 @@ public class BaseTest {
     	DriverFactory.initDriver(browser, headless);
 	    driver = DriverFactory.getDriver();
 	    
+	    
 	    url = ConfigManager.getInstance().getUrl(env);
     	driver.get(url);
     	
@@ -48,7 +54,7 @@ public class BaseTest {
         if (driver != null) {
 
         	driver.quit();
-
+        	log.info("Driver quit");
             DriverFactory.unload();
         }
         

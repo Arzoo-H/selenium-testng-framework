@@ -1,13 +1,13 @@
-package com.selenium.testng.pages;
+package com.selenium.testng.web.pages;
 
-import static com.selenium.testng.locators.LoginPageLocators.*;
+import static com.selenium.testng.web.locators.LoginPageLocators.*;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 
-import com.selenium.testng.base.BasePage;
 import com.selenium.testng.utils.LoggerUtil;
+import com.selenium.testng.web.base.BasePage;
 
 public class LoginPage extends BasePage {
 	
@@ -28,19 +28,21 @@ public class LoginPage extends BasePage {
 	// FUNCTIONS
 	// ==========================================
     
-    public boolean loginToPortal(String username, String password) {
+	public boolean loginToPortal(String username, String password) {
 
-		if (actions.waitForClickable(txtUsername) != null) {
-			actions.enterText(txtUsername, username);
+		try {
+			if (actions.waitForClickable(txtUsername) != null) {
+				actions.enterText(txtUsername, username);
 
-			actions.enterText(txtPassword, password);
+				actions.enterText(txtPassword, password);
 
-			actions.click(btnLogin);
-			log.info("Clicked Login button");
-			return true;
+				actions.click(btnLogin);
+				log.info("Clicked Login button");
+				return true;
+			}
+		} catch (Exception e) {
+			log.error("Could not click on Login button because of exception - ", e);
 		}
-		
-		log.error("Could not click on Login button");
 		return false;
 	}
 }

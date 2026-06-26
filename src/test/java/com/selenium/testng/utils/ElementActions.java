@@ -11,7 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.selenium.testng.base.DriverFactory;
+import com.selenium.testng.web.driverfactory.DriverFactory;
 
 public class ElementActions {
 
