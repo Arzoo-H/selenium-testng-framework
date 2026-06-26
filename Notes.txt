@@ -90,8 +90,27 @@ Question. Steps to adding API to existing framework
 a) Add 'RestAssured' dependency to pom.xml
 b) Add urls along with env to Config.properties
 c) Add method to ConfigManager that parses which url to pick from properties file
-d) Add base for API - set base url
-e) 
+d) Add base for API - set base url, set parameters via TestContext set base url, add Listeners annotation
+e) Add Client class having calls of Get, Post, Patch
+f) Add test-case calling the client methods with assertions
+g) Update AssertionUtils to have asserts for API
+h) Add an xml for API test-cases
+i) Update TestListener w.r.t browser and driver errors since they are null as web won't be executing
+
+==============================================
+Question. Steps to adding GitHub CI to existing framework
+
+a) Create folders -> .github/workflows/testng.yml
+b) Add contents in yaml file as -> 	Name of job, 
+									On which action we will trigger the job,
+									On which machine it will execute,
+									Steps of checking out code, setting up JDK and executing via mvn command
+									Also, add upload artifact step for extent reports and logger file
+c) Update the browsers configuration to support headless mode
+d) Put this parameter in testNG.xml and pass it to TestContext via TestBase
+
+Note: you can use and put each test-case into TestGroups and then execute testcases in a group via mvn command 
+mvn test -Dgroups=ui-smoke
 
 
 ==============================================

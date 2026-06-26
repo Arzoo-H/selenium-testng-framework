@@ -1,4 +1,4 @@
-package com.selenium.testng.base;
+package com.selenium.testng.web.base;
 
 import org.openqa.selenium.WebDriver;
 

@@ -3,6 +3,10 @@ package com.selenium.testng.config;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.slf4j.Logger;
+
+import com.selenium.testng.utils.LoggerUtil;
+
 
 /**
  * 
@@ -12,6 +16,8 @@ import java.util.Properties;
  *
  */
 public class ConfigManager {
+
+	private static final Logger log = LoggerUtil.getLogger(ConfigManager.class);
 
 	private static ConfigManager instance;
 	private Properties properties;
@@ -31,6 +37,7 @@ public class ConfigManager {
 		try (InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")) {
 
 			if (input != null) {
+				log.info("Loading config.properties");
 				properties.load(input);
 			} else 
 				throw new RuntimeException("config.properties not found in classpath");

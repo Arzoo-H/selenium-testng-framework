@@ -1,4 +1,4 @@
-package com.selenium.testng.config;
+package com.selenium.testng.context;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
