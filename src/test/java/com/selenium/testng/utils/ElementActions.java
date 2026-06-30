@@ -28,125 +28,84 @@ public class ElementActions {
 	// ==========================================
 	// PAGE RELATED
 	// ==========================================
-	
+
 	public String getPageTitle() {
 
-	    return (String) js.executeScript(
-	            "return document.title;");
+		return (String) js.executeScript("return document.title;");
 	}
-	
+
 	public String getCurrentUrl() {
 
-	    return (String) js.executeScript(
-	            "return window.location.href;");
+		return (String) js.executeScript("return window.location.href;");
 	}
-	
+
 	// ==========================================
 	// WAITS
 	// ==========================================
-	
+
 	public WebElement waitForVisibility(By locator) {
 
-	    WebDriverWait wait =
-	            new WebDriverWait(
-	            		DriverFactory.getDriver(),
-	                    Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(10));
 
-	    return wait.until(
-	            ExpectedConditions.visibilityOfElementLocated(locator));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
-	
+
 	public WebElement waitForVisibility(WebElement element) {
 
-	    WebDriverWait wait =
-	            new WebDriverWait(
-	                    DriverFactory.getDriver(),
-	                    Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(10));
 
-	    return wait.until(
-	            ExpectedConditions.visibilityOf(element));
+		return wait.until(ExpectedConditions.visibilityOf(element));
 	}
-	
-	public List<WebElement> waitForAllElementsVisible(
-	        List<WebElement> elements) {
 
-	    WebDriverWait wait =
-	            new WebDriverWait(
-	                    DriverFactory.getDriver(),
-	                    Duration.ofSeconds(10));
+	public List<WebElement> waitForAllElementsVisible(List<WebElement> elements) {
 
-	    return wait.until(
-	            ExpectedConditions.visibilityOfAllElements(
-	                    elements));
+		WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(10));
+
+		return wait.until(ExpectedConditions.visibilityOfAllElements(elements));
 	}
-	
+
 	public WebElement waitForClickable(By locator) {
 
-	    WebDriverWait wait =
-	            new WebDriverWait(
-	                    DriverFactory.getDriver(),
-	                    Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(10));
 
-	    return wait.until(
-	            ExpectedConditions.elementToBeClickable(locator));
+		return wait.until(ExpectedConditions.elementToBeClickable(locator));
 	}
-	
+
 	public WebElement waitForClickable(WebElement element) {
 
-	    WebDriverWait wait =
-	            new WebDriverWait(
-	                    DriverFactory.getDriver(),
-	                    Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(10));
 
-	    return wait.until(
-	            ExpectedConditions.elementToBeClickable(element));
+		return wait.until(ExpectedConditions.elementToBeClickable(element));
 	}
-	
+
 	public boolean waitForInvisibility(By locator) {
 
-	    WebDriverWait wait =
-	            new WebDriverWait(
-	                    DriverFactory.getDriver(),
-	                    Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(10));
 
-	    return wait.until(
-	            ExpectedConditions.invisibilityOfElementLocated(locator));
+		return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
 	}
-	
+
 	public boolean waitForInvisibility(WebElement element) {
 
-	    WebDriverWait wait =
-	            new WebDriverWait(
-	                    DriverFactory.getDriver(),
-	                    Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(10));
 
-	    return wait.until(
-	            ExpectedConditions.invisibilityOf(element));
+		return wait.until(ExpectedConditions.invisibilityOf(element));
 	}
-	
+
 	public Alert waitForAlert() {
 
-	    WebDriverWait wait =
-	            new WebDriverWait(
-	                    DriverFactory.getDriver(),
-	                    Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(10));
 
-	    return wait.until(
-	            ExpectedConditions.alertIsPresent());
+		return wait.until(ExpectedConditions.alertIsPresent());
 	}
-	
+
 	public boolean waitForStaleness(WebElement element) {
 
-	    WebDriverWait wait =
-	            new WebDriverWait(
-	                    DriverFactory.getDriver(),
-	                    Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(10));
 
-	    return wait.until(
-	            ExpectedConditions.stalenessOf(element));
+		return wait.until(ExpectedConditions.stalenessOf(element));
 	}
-	
-	
+
 	// ==========================================
 	// CLICK
 	// ==========================================
@@ -224,15 +183,26 @@ public class ElementActions {
 
 		return element.getText();
 	}
-	
+
 	public String getTextUsingJS(By locator) {
 
-	    WebElement element =
-	            getElement(locator);
+		WebElement element = getElement(locator);
 
-	    return (String) js.executeScript(
-	            "return arguments[0].textContent;",
-	            element);
+		return (String) js.executeScript("return arguments[0].textContent;", element);
+	}
+	
+	// ==========================================
+	// GET ATTRIBUTE
+	// ==========================================
+	
+	public String getAttribute(By locator, String attributeName) {
+
+	    return waitForVisibility(locator).getAttribute(attributeName);
+	}
+	
+	public String getAttribute(WebElement element, String attributeName) {
+
+	    return element.getAttribute(attributeName);
 	}
 
 	// ==========================================
@@ -312,19 +282,17 @@ public class ElementActions {
 
 		js.executeScript("arguments[0].scrollIntoView({block:'center'});", element);
 	}
-	
+
 	public void scrollToBottom() {
 
-	    js.executeScript(
-	            "window.scrollTo(0, document.body.scrollHeight);");
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 	}
 
 	public void scrollToTop() {
 
-	    js.executeScript(
-	            "window.scrollTo(0,0);");
+		js.executeScript("window.scrollTo(0,0);");
 	}
-	
+
 	// ==========================================
 	// HIGHLIGHT
 	// ==========================================
@@ -336,15 +304,12 @@ public class ElementActions {
 		js.executeScript("arguments[0].style.border='3px solid red'", element);
 	}
 
-	
 	// ==========================================
 	// JS WAIT
 	// ==========================================
-	
+
 	public void waitForPageToLoad() {
 
-	    wait.until(driver -> js.executeScript(
-	    		"return document.readyState").equals("complete")
-	    		);
+		wait.until(driver -> js.executeScript("return document.readyState").equals("complete"));
 	}
 }

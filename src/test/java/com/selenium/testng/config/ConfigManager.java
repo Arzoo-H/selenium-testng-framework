@@ -76,5 +76,15 @@ public class ConfigManager {
 	public String getApiUrl(String env) {
 	    return properties.getProperty(env + ".api.url");
 	}
+	
+	/**
+	 * passing env is to parse which value to pick for API Key
+	 * @param env - Can be qa, prod
+	 * @return API key
+	 * @author Arzoo Hingorani
+	 */
+	public String getApiKey(String env) {
+	    return properties.getProperty(env + ".api.key");
+	}
 
 }

@@ -11,7 +11,7 @@ public class AssertionUtils {
 		try {
 			Assert.assertEquals(actual, expected);
 			ExtentManager.getTest().pass(stepMessage);
-			
+
 		} catch (AssertionError e) {
 			ExtentManager.getTest().fail(stepMessage + "<br>" + e.getMessage());
 			throw e;
@@ -46,6 +46,56 @@ public class AssertionUtils {
 
 		ExtentManager.getTest().fail(stepMessage);
 		Assert.fail(stepMessage);
+	}
+
+	// Soft asserts
+
+	public static void assertAll() {
+		SoftAssertManager.get().assertAll();
+	}
+
+	public static void softAssertTrue(boolean condition, String stepMessage) {
+
+		SoftAssertManager.get().assertTrue(condition);
+
+		if (condition) {
+			ExtentManager.getTest().pass(stepMessage);
+		} else {
+			ExtentManager.getTest().fail(stepMessage);
+		}
+	}
+
+	public static void softAssertFalse(boolean condition, String stepMessage) {
+
+		SoftAssertManager.get().assertFalse(condition);
+
+		if (!condition) {
+			ExtentManager.getTest().pass(stepMessage);
+		} else {
+			ExtentManager.getTest().fail(stepMessage);
+		}
+	}
+
+	public static void softAssertEquals(String actual, String expected, String stepMessage) {
+
+		SoftAssertManager.get().assertEquals(actual, expected);
+
+		if (actual != null && actual.equals(expected)) {
+			ExtentManager.getTest().pass(stepMessage);
+		} else {
+			ExtentManager.getTest().fail(stepMessage);
+		}
+	}
+	
+	public static void softAssertNotEquals(String actual, String expected, String stepMessage) {
+
+		SoftAssertManager.get().assertNotEquals(actual, expected);
+
+		if (actual == null || !actual.equals(expected)) {
+			ExtentManager.getTest().pass(stepMessage);
+		} else {
+			ExtentManager.getTest().fail(stepMessage);
+		}
 	}
 
 	// For API Assertins
@@ -97,4 +147,31 @@ public class AssertionUtils {
 			throw e;
 		}
 	}
+
+	// For API Assertins - Soft Asserts
+	public static void softAssertStatusCode(Response response, int expectedStatusCode, String stepMessage) {
+
+		SoftAssertManager.get().assertEquals(response.getStatusCode(), expectedStatusCode);
+
+		if (response.getStatusCode() == expectedStatusCode) {
+			ExtentManager.getTest().pass(stepMessage);
+		} else {
+			ExtentManager.getTest().fail(stepMessage);
+		}
+	}
+
+	public static void softAssertJsonPathEquals(Response response, String jsonPath, String expectedValue,
+			String stepMessage) {
+
+		String actual = response.jsonPath().getString(jsonPath);
+
+		SoftAssertManager.get().assertEquals(actual, expectedValue);
+
+		if (expectedValue.equals(actual)) {
+			ExtentManager.getTest().pass(stepMessage);
+		} else {
+			ExtentManager.getTest().fail(stepMessage);
+		}
+	}
+
 }

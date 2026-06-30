@@ -83,12 +83,11 @@ z) Before execution, ensure AfterMethod in TestBase as quit browser/driver code
 	along with remove() thread called for DriverFactory and TestContext 
 	Similarly, in TestNG Listener onFinish() method, we call remove() for Extent thread
 
-
 ==============================================
 Question. Steps to adding API to existing framework
 
 a) Add 'RestAssured' dependency to pom.xml
-b) Add urls along with env to Config.properties
+b) Add urls along with env, API-keys if any to Config.properties
 c) Add method to ConfigManager that parses which url to pick from properties file
 d) Add base for API - set base url, set parameters via TestContext set base url, add Listeners annotation
 e) Add Client class having calls of Get, Post, Patch
@@ -112,9 +111,7 @@ d) Put this parameter in testNG.xml and pass it to TestContext via TestBase
 Note: you can use and put each test-case into TestGroups and then execute testcases in a group via mvn command 
 mvn test -Dgroups=ui-smoke
 
-
 ==============================================
-
 Question. Which branch does GitHub execute?
 
 Depends on your YAML.
@@ -186,7 +183,6 @@ then,
 									b) After Merge (runs the workflow on main branch)
 		
 ==============================================
-
 Question. Can we execute specific test-cases on CI automatically?
 -> Yes, we can.
 
@@ -197,9 +193,29 @@ For execution, you can use 'mvn test -Dgroups=api-smoke' command (this is a samp
 You can have groups like - api-smoke, api-regression, ui-smoke, ui-regression, etc
 
 ==============================================
+Question. How are Soft Asserts different than Hard Asserts. Why does Soft Assert needs to be Thread Safe?
+-> 	
+Hard Assert = instant check
+
+	Like a security guard: “Show me ID → OK / NOT OK → done”
+	No memory retained.
+	
+Soft Assert = checklist
+
+	Like a QA checklist:
+		Check login ✔
+		Check profile ✔
+		Check logout ❌
+	You must store all results until end.
+	Now imagine 2 testers sharing one checklist → chaos.
+	That’s why isolation is required.
 		
+Now the technical answer -> SoftAssert maintains internal state across multiple validations in a test. 
+							In parallel execution, this state can be corrupted if shared between threads. 
+							Hence we use ThreadLocal to isolate SoftAssert instances per test thread. 
+							Hard Assert is stateless and executes independently, so it doesn't require thread safety.
 
-
+==============================================
 
 
 
