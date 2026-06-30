@@ -1,11 +1,11 @@
 package com.selenium.testng.utils;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import org.slf4j.Logger;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.selenium.testng.context.ExecutionContext;
 
 /**
  * 
@@ -21,6 +21,8 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
  */
 public class ExtentManager {
 
+	private static final Logger log = LoggerUtil.getLogger(ExtentManager.class);
+
     private static ExtentReports extent;
     private static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
 
@@ -28,12 +30,9 @@ public class ExtentManager {
 
         if (extent == null) {
 
-            String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-
-            String reportPath = System.getProperty("user.dir")
-			                    + "/reports/ExtentReport_"
-			                    + timestamp
-			                    + ".html";
+        	log.info("Creating Extent Report");
+            String reportPath = ExecutionContext.getReportPath();
+        	log.info("Report location: ", reportPath);
 
             ExtentSparkReporter spark = new ExtentSparkReporter(reportPath);
 

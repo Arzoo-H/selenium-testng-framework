@@ -3,6 +3,10 @@ package com.selenium.testng.config;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.slf4j.Logger;
+
+import com.selenium.testng.utils.LoggerUtil;
+
 
 /**
  * 
@@ -12,6 +16,8 @@ import java.util.Properties;
  *
  */
 public class ConfigManager {
+
+	private static final Logger log = LoggerUtil.getLogger(ConfigManager.class);
 
 	private static ConfigManager instance;
 	private Properties properties;
@@ -31,6 +37,7 @@ public class ConfigManager {
 		try (InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")) {
 
 			if (input != null) {
+				log.info("Loading config.properties");
 				properties.load(input);
 			} else 
 				throw new RuntimeException("config.properties not found in classpath");
@@ -50,10 +57,34 @@ public class ConfigManager {
 		return instance;
 	}
 
-	// helper methods (clean API)
-	// passing 'chrome' for browser is to imply by default we choose chrome
+	/**
+	 * passing env is to parse which value to pick for url
+	 * @param env - Can be qa, prod
+	 * @return url
+	 * @author Arzoo Hingorani
+	 */
 	public String getUrl(String env) {
 		return properties.getProperty(env + ".url");
+	}
+	
+	/**
+	 * passing env is to parse which value to pick for url
+	 * @param env - Can be qa, prod
+	 * @return url
+	 * @author Arzoo Hingorani
+	 */
+	public String getApiUrl(String env) {
+	    return properties.getProperty(env + ".api.url");
+	}
+	
+	/**
+	 * passing env is to parse which value to pick for API Key
+	 * @param env - Can be qa, prod
+	 * @return API key
+	 * @author Arzoo Hingorani
+	 */
+	public String getApiKey(String env) {
+	    return properties.getProperty(env + ".api.key");
 	}
 
 }
