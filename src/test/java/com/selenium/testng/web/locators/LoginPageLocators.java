@@ -1,4 +1,4 @@
-package com.selenium.testng.locators;
+package com.selenium.testng.web.locators;
 
 public class LoginPageLocators {
 

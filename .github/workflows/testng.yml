@@ -21,7 +21,7 @@ jobs:
           java-version: 17
 
       - name: Run Maven tests
-        run: mvn clean test -DsuiteXmlFile=testNG.xml
+        run: mvn clean test -DsuiteXmlFile=src/test/resources/suites/testNG.xml
         
       - name: Upload Extent Report
         uses: actions/upload-artifact@v4
@@ -29,3 +29,15 @@ jobs:
         with:
           name: extent-report
           path: reports/
+      - name: Upload Logs
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+         name: execution-logs
+         path: logs/
+      - name: Upload Screenshots
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+         name: screenshots
+         path: screenshots/
