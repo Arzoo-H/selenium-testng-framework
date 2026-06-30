@@ -1,7 +1,10 @@
 package com.selenium.testng.web.pages;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 
 import com.selenium.testng.utils.LocatorUtil;
@@ -25,25 +28,27 @@ public class AdminPage extends BasePage {
 	// ==========================================
     
 	/**
-	 * Selects the mentioned user having the employee name and a role
-	 * @param employeeName [String] : Employee Name
-	 * @param role [String] : Their role
+	 * Selects the mentioned first user having the employee role and a status match
+	 * We get elements to fetch all user matching with mentioned details 
+	 * @param role [String] : Employee's role
+	 * @param status [String] : Their status
 	 * @return true if user is selected
 	 * @author Arzoo Hingorani
 	 */
-	public boolean selectUser(String employeeName, String role) {
-		By usernameChk = LocatorUtil.xpath(AdminPageLocators.USERNAME_CHK, employeeName, role);
+	public boolean selectFirstUser(String role, String status) {
+		By usernameChk = LocatorUtil.xpath(AdminPageLocators.USERNAME_CHK, role, status);
 		try {
-			if (actions.waitForClickable(usernameChk) != null) {
-				actions.scrollIntoView(usernameChk);
-				actions.click(usernameChk);
-				log.info("Employee {} having role {} is selected", employeeName, role);
+			List<WebElement> usernamesChk = actions.getElements(usernameChk);
+			if (usernamesChk != null) {
+				actions.scrollIntoView(usernamesChk.get(0));
+				actions.click(usernamesChk.get(0));
+				log.info("First employee having role {} and status {} is selected", role, status);
 				
-				if(actions.getAttribute(usernameChk, "class").contains("focus"))
+				if(actions.getAttribute(usernamesChk.get(0), "class").contains("focus"))
 					return true;
 			}
 		} catch (Exception e) {
-			log.error("Could not select employee {} having role {}", employeeName, role, e);
+			log.error("Could not select employee having role {} whose status is {}", role, status, e);
 		}
 		return false;
 	}
