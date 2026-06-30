@@ -14,7 +14,7 @@ public class AdminTest extends BaseTest {
     @Test(groups = {"ui-regression"})
     public void verifyUserExists() {
 
-    	String employeeName = "G Singh", role = "ESS";
+    	String role = "ESS", status = "Enabled";
     	
         LoginPage login = new LoginPage(driver);
 
@@ -26,8 +26,8 @@ public class AdminTest extends BaseTest {
         							"Clicked on Admin menu");
         
         AdminPage adminPage = new AdminPage(driver);
-        AssertionUtils.assertTrue(adminPage.selectUser(employeeName, role),
-        							"Select user " + employeeName);
+        AssertionUtils.assertTrue(adminPage.selectFirstUser(role, status),
+        							"Select first user having " + role);
         
         AssertionUtils.assertTrue(adminPage.clickOnDeleteSelectedUser(),
 									"Clicked on Delete Selected user button");
