@@ -1,11 +1,13 @@
 package com.selenium.testng.api.base;
 
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 import com.selenium.testng.config.ConfigManager;
+import com.selenium.testng.config.LoggerConfig;
 import com.selenium.testng.context.TestContext;
 import com.selenium.testng.listeners.RetryListener;
 import com.selenium.testng.listeners.TestListener;
@@ -19,6 +21,15 @@ import io.restassured.http.ContentType;
     RetryListener.class
 })
 public class BaseApiTest {
+	
+    @BeforeSuite
+    public void oneTimeSetup() {
+    	
+    	// Programmatically setting log file details instead setting in Logback.xml
+    	// because Logback reads logback.xml before our code gets a chance to set logFileName with 
+    	// same runID as ExtentReport and Screenshot
+    	LoggerConfig.configure();
+    }
 
 	@Parameters({"env"})
 	@BeforeClass
