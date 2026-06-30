@@ -11,6 +11,8 @@ import com.selenium.testng.listeners.RetryListener;
 import com.selenium.testng.listeners.TestListener;
 
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
 
 @Listeners({
     TestListener.class,
@@ -25,5 +27,11 @@ public class BaseApiTest {
 		TestContext.setContext(new TestContext(null, env, null));
 
 		RestAssured.baseURI = ConfigManager.getInstance().getApiUrl(env);
+		
+		RestAssured.requestSpecification = new RequestSpecBuilder()
+												.addHeader("x-api-key", ConfigManager.getInstance().getApiKey(env))
+												.setContentType(ContentType.JSON)
+												.build();
 	}
+	
 }
