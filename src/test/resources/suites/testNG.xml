@@ -2,8 +2,10 @@
 <suite name="CrossBrowserSuite" parallel="tests" thread-count="4">
 
 	<listeners>
-		<listener class-name="com.selenium.testng.listeners.TestListener" />
-		<listener class-name="com.selenium.testng.listeners.RetryListener" />
+		<listener
+			class-name="com.selenium.testng.listeners.TestListener" />
+		<listener
+			class-name="com.selenium.testng.listeners.RetryListener" />
 	</listeners>
 
 	<parameter name="env" value="qa" />
@@ -12,14 +14,21 @@
 	<test name="Chrome-QA">
 		<parameter name="browser" value="chrome" />
 		<classes>
-			<class name="com.selenium.testng.tests.LoginTest" />
+			<class name="com.selenium.testng.web.tests.LoginTest" />
 		</classes>
 	</test>
 
 	<test name="Firefox-QA">
 		<parameter name="browser" value="firefox" />
 		<classes>
-			<class name="com.selenium.testng.tests.LoginTest" />
+			<class name="com.selenium.testng.web.tests.AdminTest" />
+		</classes>
+	</test>
+
+	<test name="API-QA">
+		<parameter name="browser" value="firefox" />
+		<classes>
+			<class name="com.selenium.testng.api.tests.UserApiTest" />
 		</classes>
 	</test>
 </suite>
