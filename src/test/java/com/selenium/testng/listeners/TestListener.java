@@ -31,18 +31,18 @@ public class TestListener implements ITestListener {
         // log object is registering all information to Log
 		log.info("===================================");
     	test.info("Starting Test: " + result.getMethod().getMethodName());
-		log.info("Starting Test: ", result.getMethod().getMethodName());
+		log.info("Starting Test: {}", result.getMethod().getMethodName());
 
     	if (TestContext.getContext().getBrowser() != null) {
     		test.assignCategory(TestContext.getContext().getBrowser()); // used to create filter tests by browser detail/category like chrome, firefox etc
         	test.info("Browser: " + TestContext.getContext().getBrowser());
-    		log.info("Browser: ", TestContext.getContext().getBrowser());
+    		log.info("Browser: {}", TestContext.getContext().getBrowser());
     	}
 
     	if (TestContext.getContext().getEnv() != null) {
     	    test.assignCategory(TestContext.getContext().getEnv());
     		test.info("Environment : " + TestContext.getContext().getEnv());
-    		log.info("Environment: ", TestContext.getContext().getEnv());
+    		log.info("Environment: {}", TestContext.getContext().getEnv());
     	}
 		log.info("===================================");
     }
@@ -66,7 +66,7 @@ public class TestListener implements ITestListener {
 
 			try {
 				test.addScreenCaptureFromPath(screenshotPath);
-				log.info("Screenshot saved: ", screenshotPath);
+				log.info("Screenshot saved: {}", screenshotPath);
 
 			} catch (Exception e) {
 				e.printStackTrace();
